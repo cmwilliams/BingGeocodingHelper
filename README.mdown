@@ -10,35 +10,35 @@ The Bing Geocoding Helper is a wrapper for the Bing Geocoding API that let you g
 
 ## Usage
 	
-	You'll need a Bing API key for this to work.
+You'll need a Bing API key for this to work.
 
 	//Address geocoding
 
-    	using BingGeocoder;
+	using BingGeocoder;
     
 	var geocoder = new BingGeocoderClient("MyBingKey");
-        var result = new BingGeocoderResult();
-        result = geocoder.Geocode("1230 Peachtree St", "Atlanta", "GA", "30309");
+	var result = new BingGeocoderResult();
+	result = geocoder.Geocode("1230 Peachtree St", "Atlanta", "GA", "30309");
         
- 	//Result
+	//Result
 	result.Confidence
-       	result.Latitude
-        result.Longitude
-        result.ErrorMessage
+	result.Latitude
+	result.Longitude
+	result.ErrorMessage
 
-   	//Query geocoding
+	//Query geocoding
 
-    	using BingGeocoder;
+	using BingGeocoder;
     
 	var geocoder = new BingGeocoderClient("MyBingKey");
-        var result = new BingGeocoderResult();
-        result = geocoder.Geocode("Atlanta");
+	var result = new BingGeocoderResult();
+	result = geocoder.Geocode("Atlanta");
         
- 	//Result
+	//Result
 	result.Confidence
-       	result.Latitude
-        result.Longitude
-        result.ErrorMessage
+	result.Latitude
+	result.Longitude
+	result.ErrorMessage
     
 ## Testing
 
