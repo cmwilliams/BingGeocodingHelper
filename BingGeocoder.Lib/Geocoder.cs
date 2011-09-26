@@ -52,8 +52,6 @@ namespace BingGeocoder
                 }
 
                 return result;
-
-                return result;
             }
             catch (Exception ex)
             {
