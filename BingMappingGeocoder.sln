@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingGeocoder", "BingGeocoder.Lib\BingGeocoder.csproj", "{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specs", "BingGeocoder.Specs\Specs.csproj", "{1869776C-3BCE-4452-82CB-11E10ADF506E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{115E7994-9DA3-4A6D-AA0F-EBC1FDE3C998}.Release|x86.ActiveCfg = Release|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1869776C-3BCE-4452-82CB-11E10ADF506E}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
