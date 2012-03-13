@@ -6,7 +6,7 @@ The Bing Geocoding Helper is a wrapper for the Bing Geocoding API that let you g
 ## Install
 
    nuget
-   PM> Install-Package GoogleQRGenerator
+   PM> Install-Package BingGeocodingHelper
 
 ## Usage
 	
