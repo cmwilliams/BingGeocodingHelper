@@ -7,104 +7,69 @@ namespace BingGeocoder
 {
     public class BingGeocoderClient
     {
-        private string API_KEY = "";
+        private readonly string _apiKey = "";
 
-        public BingGeocoderClient(string BingKey)
+        public BingGeocoderClient(string bingKey)
         {
-            API_KEY = BingKey;
+            _apiKey = bingKey;
+        }
+
+
+        private static BingGeocoderResult MakeRequest(string request)
+        {
+            var result = new BingGeocoderResult
+                             {
+                                 Confidence = "No results",
+                                 Latitude = null,
+                                 Longitude = null,
+                                 ErrorMessage = null
+                             };
+
+            try
+            {
+                var webReq = (HttpWebRequest) WebRequest.Create(request);
+                webReq.Method = "GET";
+
+                var webResp = (HttpWebResponse) webReq.GetResponse();
+                var webRespStream = webResp.GetResponseStream();
+                var webStreamReader = new StreamReader(webRespStream);
+
+                var respJson = webStreamReader.ReadToEnd();
+                var jsonObject = JObject.Parse(respJson);
+                var respArray = (JArray) jsonObject["resourceSets"];
+                var respStatus = jsonObject["statusCode"].ToString().Trim();
+
+                var resultArray = (JArray) respArray[0]["resources"];
+                if (respStatus == "200" && resultArray.Count >= 1)
+                {
+                    var geoArray = (JArray) resultArray[0]["point"]["coordinates"];
+                    var confidence = resultArray[0]["confidence"].ToString();
+                    result.Confidence = confidence;
+                    result.Latitude = geoArray[0].ToString();
+                    result.Longitude = geoArray[1].ToString();
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+
+                result.ErrorMessage = e.Message;
+                return result;
+            }
         }
 
         public BingGeocoderResult Geocode(string street, string city, string state, string zipcode)
         {
-            BingGeocoderResult result = new BingGeocoderResult()
-                                            {
-                                                Confidence = "No results",
-                                                Latitude = null,
-                                                Longitude = null,
-                                                ErrorMessage = null
-                                            };
-
-            try
-            {
-                var address = state.Trim() + "/" + zipcode.Trim() + "/" + city.Trim() + "/" + street.Trim();
-                string req = "http://dev.virtualearth.net/REST/v1/Locations/US/" + address + "?output=json&key=" +
-                             API_KEY;
-                HttpWebRequest WebReq = (HttpWebRequest) WebRequest.Create(req);
-                WebReq.Method = "GET";
-
-                HttpWebResponse WebResp = (HttpWebResponse) WebReq.GetResponse();
-                Stream WebRespStream = WebResp.GetResponseStream();
-                StreamReader WebStreamReader = new StreamReader(WebRespStream);
-
-                string respJson = WebStreamReader.ReadToEnd().ToString();
-                JObject JsonObject = JObject.Parse(respJson);
-                JArray RespArray = (JArray) JsonObject["resourceSets"];
-                string respStatus = JsonObject["statusCode"].ToString().Trim();
-
-                JArray resultArray = (JArray) RespArray[0]["resources"];
-                if (respStatus == "200" && resultArray.Count >= 1)
-                {
-                    JArray geoArray = (JArray) resultArray[0]["point"]["coordinates"];
-                    string confidence = resultArray[0]["confidence"].ToString();
-                    result.Confidence = confidence;
-                    result.Latitude = geoArray[0].ToString();
-                    result.Longitude = geoArray[1].ToString();
-                }
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ErrorMessage = ex.Message;
-                return result;
-            }
-
-
+            var address = state.Trim() + "/" + zipcode.Trim() + "/" + city.Trim() + "/" + street.Trim();
+            var request = "http://dev.virtualearth.net/REST/v1/Locations/US/" + address + "?output=json&key=" + _apiKey;
+            return MakeRequest(request);
         }
 
         public BingGeocoderResult Geocode(string query)
         {
-            BingGeocoderResult result = new BingGeocoderResult()
-                                            {
-                                                Confidence = "No results",
-                                                Latitude = null,
-                                                Longitude = null,
-                                                ErrorMessage = null
-                                            };
-
-            try
-            {
-                string req = "http://dev.virtualearth.net/REST/v1/Locations/" + query + "?output=json&key=" + API_KEY;
-                HttpWebRequest WebReq = (HttpWebRequest) WebRequest.Create(req);
-                WebReq.Method = "GET";
-
-                HttpWebResponse WebResp = (HttpWebResponse) WebReq.GetResponse();
-                Stream WebRespStream = WebResp.GetResponseStream();
-                StreamReader WebStreamReader = new StreamReader(WebRespStream);
-
-                string respJson = WebStreamReader.ReadToEnd().ToString();
-                JObject JsonObject = JObject.Parse(respJson);
-                JArray RespArray = (JArray) JsonObject["resourceSets"];
-                string respStatus = JsonObject["statusCode"].ToString().Trim();
-
-                JArray resultArray = (JArray) RespArray[0]["resources"];
-                if (respStatus == "200" && resultArray.Count >= 1)
-                {
-                    JArray geoArray = (JArray) resultArray[0]["point"]["coordinates"];
-                    string confidence = resultArray[0]["confidence"].ToString();
-                    result.Confidence = confidence;
-                    result.Latitude = geoArray[0].ToString();
-                    result.Longitude = geoArray[1].ToString();
-                }
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ErrorMessage = ex.Message;
-                return result;
-            }
-
+            var request = "http://dev.virtualearth.net/REST/v1/Locations/" + query + "?output=json&key=" + _apiKey;
+            return MakeRequest(request);
         }
     }
 }
